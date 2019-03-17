@@ -35,5 +35,16 @@ ADD UNIQUE INDEX `blogger_date_UNIQUE` (`blogger_name` ASC, `created_date` ASC),
 DROP INDEX `created_date_UNIQUE` ;
 ;
 
+CREATE TABLE `financial_blogs`.`processed_blogs` (
+  `id` INT NOT NULL,
+  `blogger_name` VARCHAR(45) NULL,
+  `words` TEXT NULL,
+  `created_date` DATETIME NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE INDEX `blogger_name_and_date_UNIQUE` (`blogger_name` ASC, `created_date` ASC))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
+
+
 INSERT INTO `financial_blogs`.`blogger` (`blogger_name`, `visits`, `ranking`, `first_page_url`, `start_page`, `end_page`) VALUES ('余岳桐', '24122167', '118', 'http://blog.eastmoney.com/yuyuetong/bloglist_0_1.html', '1', '31');
 

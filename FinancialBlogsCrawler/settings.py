@@ -11,7 +11,6 @@
 
 ROBOTSTXT_OBEY = False
 
-
 # variables for connecting MySQL
 MYSQL_HOST = 'localhost'
 MYSQL_DATABASE = 'financial_blogs'

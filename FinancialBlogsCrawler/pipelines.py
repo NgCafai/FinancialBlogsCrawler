@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 import pymysql
-
+import logging
 
 # Define your item pipelines here
 #
@@ -10,6 +10,7 @@ import pymysql
 
 class BlogsToMySQLPipeline(object):
     def __init__(self, host, database, user, password, port):
+        self.logger = logging.getLogger(__name__)
         self.host = host
         self.database = database
         self.user = user
@@ -47,4 +48,5 @@ class BlogsToMySQLPipeline(object):
             self.db.commit()
         except:
             self.db.rollback()
+            self.logger.debug("Error when insert into database")
         return item

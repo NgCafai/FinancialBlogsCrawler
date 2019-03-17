@@ -8,7 +8,7 @@ class BlogsSpider(scrapy.Spider):
     allowed_domains = ['blog.eastmoney.com']
 
     def start_requests(self):
-        for page in range(1, 32):
+        for page in range(1, 51):
             url = 'http://blog.eastmoney.com/yuyuetong/bloglist_0_%d.html' % page
             self.logger.debug('parsing page: ' + url)
             yield scrapy.Request(url, callback=self.parse_outer_page)
