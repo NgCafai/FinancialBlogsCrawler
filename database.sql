@@ -48,6 +48,9 @@ DEFAULT CHARACTER SET = utf8;
 ALTER TABLE `financial_blogs`.`processed_blogs`
 ADD COLUMN `num_words` INT NULL AFTER `created_date`;
 
+ALTER TABLE `financial_blogs`.`blogger`
+ADD COLUMN `remarks` TEXT NULL DEFAULT NULL AFTER `end_page`;
+
 
 INSERT INTO `financial_blogs`.`blogger` (`blogger_name`, `visits`, `ranking`, `first_page_url`, `start_page`, `end_page`) VALUES ('余岳桐', '24122167', '118', 'http://blog.eastmoney.com/yuyuetong/bloglist_0_1.html', '1', '31');
 

@@ -4,12 +4,12 @@ from ..items import *
 
 
 class BlogsSpider(scrapy.Spider):
-    name = 'blogs'
+    name = 'blogs_xuedaolaozu'
     allowed_domains = ['blog.eastmoney.com']
 
     def start_requests(self):
-        for page in range(1, 57):
-            url = 'http://blog.eastmoney.com/yuyuetong/bloglist_0_%d.html' % page
+        for page in range(1, 66):
+            url = 'http://blog.eastmoney.com/xuedaolaozu/bloglist_0_%d.html' % page
             self.logger.debug('parsing page: ' + url)
             yield scrapy.Request(url, callback=self.parse_outer_page)
 
@@ -24,8 +24,9 @@ class BlogsSpider(scrapy.Spider):
         blogger_name = response.css("#bloger > div.blognick > span > a::text").extract_first().strip()
         headline = response.xpath(
             '//*[@id="eb_content"]/div[2]/div/div[1]/div[2]/div/div[1]/text()').extract_first().strip()
+        content_list = response.css('#articleBody ::text').extract()
         content = '\n'.join(
-            [p.strip() for p in response.css('#articleBody > p > font::text').extract() if p.strip() != ''])
+            [p.strip() for p in content_list if p.strip() != ''])
         num_views = response.css('#blog_view::text').extract_first()
         num_comments = response.css('#blog_review::text').extract_first()
         created_date = response.css('#eb_content > div.eb_column3 > div > '
