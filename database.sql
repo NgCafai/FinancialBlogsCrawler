@@ -51,6 +51,16 @@ ADD COLUMN `num_words` INT NULL AFTER `created_date`;
 ALTER TABLE `financial_blogs`.`blogger`
 ADD COLUMN `remarks` TEXT NULL DEFAULT NULL AFTER `end_page`;
 
+CREATE TABLE `financial_blogs`.`processed_blogs_all_words` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `blogger_name` VARCHAR(45) NULL,
+  `words` TEXT NULL,
+  `created_date` DATETIME NULL,
+  `num_words` INT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE INDEX `blogger_name_and_date_UNIQUE` (`blogger_name` ASC, `created_date` ASC))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
 
 INSERT INTO `financial_blogs`.`blogger` (`blogger_name`, `visits`, `ranking`, `first_page_url`, `start_page`, `end_page`) VALUES ('余岳桐', '24122167', '118', 'http://blog.eastmoney.com/yuyuetong/bloglist_0_1.html', '1', '31');
 
